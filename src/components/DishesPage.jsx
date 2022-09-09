@@ -25,7 +25,7 @@ const DishesPage = () => {
             const API_URL = `https://raw.githubusercontent.com/syook/react-dishpoll/main/db.json`;
             const res = await axios.get(API_URL);
             const buildDishes = res.data.map((dish) => {
-                return { ...dish, rankId: '' };
+                return { ...dish, rankId: 0 };
             });
             setDishes(buildDishes);
         } catch (err) {
@@ -47,7 +47,7 @@ const DishesPage = () => {
 
     return (
         <Box>
-            <Header />
+            <Header showLogin={true} />
             <Box className="section">
                 <Box
                     sx={{
@@ -59,12 +59,11 @@ const DishesPage = () => {
                         direction="row"
                         justifyContent="flex-start"
                         alignItems="flex-start"
-                        spacing={4}
+                        spacing={2}
+                        className="hide-scrollbar"
                         sx={{
-                            p: 2,
-                            border: '2px solid black',
                             margin: '0 auto 2rem',
-                            bgcolor: 'white',
+                            overflowX: 'scroll',
                         }}
                     >
                         {dishes
@@ -72,6 +71,7 @@ const DishesPage = () => {
                             .sort((a, b) => a.rankId - b.rankId)
                             .map((item) => (
                                 <Chip
+                                    sx={{ backgroundColor: 'white' }}
                                     key={item.id}
                                     avatar={
                                         <Avatar

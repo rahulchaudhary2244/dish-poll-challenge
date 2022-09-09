@@ -45,3 +45,13 @@ body {
     -webkit-line-clamp: 2; /*Upto what lines to show text*/
     -webkit-box-orient: vertical;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
