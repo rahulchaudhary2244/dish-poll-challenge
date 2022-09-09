@@ -10,17 +10,20 @@ import {
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DescriptionDialog from './DescriptionDialog';
+import AssignRankDialog from './AssignRankDialog';
 
-const DishCard = ({ image, dishName, description }) => {
+const DishCard = ({ dish, dishes, setDishes }) => {
+    const { image, dishName, description } = dish;
     const [isDescriptionDialogOpen, setIsDescriptionDialogOpen] =
         useState(false);
+    const [isRankDialogOpen, setIsRankDialogOpen] = useState(false);
 
-    const handleDescriptionDialogClickOpen = () => {
-        setIsDescriptionDialogOpen(true);
+    const handleDescriptionClick = () => {
+        setIsDescriptionDialogOpen(!isDescriptionDialogOpen);
     };
 
-    const handleDescriptionDialogClickClose = () => {
-        setIsDescriptionDialogOpen(false);
+    const handleSettingsClick = () => {
+        setIsRankDialogOpen(!isRankDialogOpen);
     };
 
     return (
@@ -28,7 +31,10 @@ const DishCard = ({ image, dishName, description }) => {
             <Card>
                 <CardHeader
                     action={
-                        <IconButton aria-label="settings">
+                        <IconButton
+                            aria-label="settings"
+                            onClick={handleSettingsClick}
+                        >
                             <MoreVertIcon />
                         </IconButton>
                     }
@@ -46,7 +52,7 @@ const DishCard = ({ image, dishName, description }) => {
                             variant="body2"
                             color="text.secondary"
                             className="clip-text-with-three-dots"
-                            onClick={handleDescriptionDialogClickOpen}
+                            onClick={handleDescriptionClick}
                         >
                             {description}
                         </Typography>
@@ -55,9 +61,16 @@ const DishCard = ({ image, dishName, description }) => {
             </Card>
             <DescriptionDialog
                 open={isDescriptionDialogOpen}
-                handleClickClose={handleDescriptionDialogClickClose}
+                handleClickClose={handleDescriptionClick}
                 dishName={dishName}
                 description={description}
+            />
+            <AssignRankDialog
+                open={isRankDialogOpen}
+                handleClose={handleSettingsClick}
+                dish={dish}
+                dishes={dishes}
+                setDishes={setDishes}
             />
         </>
     );
