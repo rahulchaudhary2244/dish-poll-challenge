@@ -7,6 +7,7 @@ import Register from './components/Register';
 import { Routes, Route } from 'react-router-dom';
 import DishesPage from './components/DishesPage';
 import LeaderboardPage from './components/LeaderboardPage';
+import DishState from './context/DishState';
 
 function App() {
     return (
@@ -22,16 +23,26 @@ function App() {
                     }}
                     autoHideDuration={3000}
                 >
-                    <Routes>
-                        <Route exact path="/login" element={<Login />} />
-                        <Route exact path="/register" element={<Register />} />
-                        <Route exact path="/dishes" element={<DishesPage />} />
-                        <Route
-                            exact
-                            path="/dishes/leaderboard"
-                            element={<LeaderboardPage />}
-                        />
-                    </Routes>
+                    <DishState>
+                        <Routes>
+                            <Route exact path="/login" element={<Login />} />
+                            <Route
+                                exact
+                                path="/register"
+                                element={<Register />}
+                            />
+                            <Route
+                                exact
+                                path="/dishes"
+                                element={<DishesPage />}
+                            />
+                            <Route
+                                exact
+                                path="/dishes/leaderboard"
+                                element={<LeaderboardPage />}
+                            />
+                        </Routes>
+                    </DishState>
                 </SnackbarProvider>
             </ThemeProvider>
         </div>

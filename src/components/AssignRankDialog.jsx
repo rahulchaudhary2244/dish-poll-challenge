@@ -1,18 +1,23 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import React, { useContext } from 'react';
+import {
+    DialogActions,
+    DialogContent,
+    Dialog,
+    Button,
+    DialogTitle,
+    InputLabel,
+    MenuItem,
+    FormControl,
+    Select,
+} from '@mui/material';
+
 import { useSnackbar } from 'notistack';
 import { RANKS } from '../utils/constants';
 import { getDishesWithChangedRank } from '../utils/Utility';
+import dishContext from '../context/DishContext';
 
-const AssignRankDialog = ({ open, dish, dishes, setDishes, handleClose }) => {
+const AssignRankDialog = ({ open, dish, handleClose }) => {
+    const [dishes, setDishes] = useContext(dishContext);
     const { enqueueSnackbar } = useSnackbar();
 
     const handleRankChange = (e) => {

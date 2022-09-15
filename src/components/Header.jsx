@@ -1,10 +1,8 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header = ({ showLogin, showLeaderboard, showPrevious }) => {
-    const navigate = useNavigate();
-
     return (
         <Box className="header">
             <Typography
@@ -62,19 +60,18 @@ const Header = ({ showLogin, showLeaderboard, showPrevious }) => {
                     </Link>
                 )}
                 {showPrevious && (
-                    // <Link to={{ pathname: '/dishes' }}>
-                    <Button
-                        variant="contained"
-                        sx={{
-                            margin: '0 1rem 0 0',
-                            letterSpacing: '0.2rem',
-                            fontWeight: 700,
-                        }}
-                        onClick={() => navigate(-1)}
-                    >
-                        Back
-                    </Button>
-                    // </Link>
+                    <Link to={{ pathname: '/dishes' }}>
+                        <Button
+                            variant="contained"
+                            sx={{
+                                margin: '0 1rem 0 0',
+                                letterSpacing: '0.2rem',
+                                fontWeight: 700,
+                            }}
+                        >
+                            Back
+                        </Button>
+                    </Link>
                 )}
             </Box>
         </Box>

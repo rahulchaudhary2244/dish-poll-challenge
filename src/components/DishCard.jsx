@@ -13,10 +13,12 @@ import DescriptionDialog from './DescriptionDialog';
 import AssignRankDialog from './AssignRankDialog';
 import { RANKS } from '../utils/constants';
 
-const DishCard = ({ dish, dishes, setDishes }) => {
+const DishCard = ({ dish }) => {
     const { image, dishName, description } = dish;
+
     const [isDescriptionDialogOpen, setIsDescriptionDialogOpen] =
         useState(false);
+
     const [isRankDialogOpen, setIsRankDialogOpen] = useState(false);
 
     const handleDescriptionClick = () => {
@@ -77,8 +79,6 @@ const DishCard = ({ dish, dishes, setDishes }) => {
                 open={isRankDialogOpen}
                 handleClose={handleSettingsClick}
                 dish={dish}
-                dishes={dishes}
-                setDishes={setDishes}
             />
         </>
     );
