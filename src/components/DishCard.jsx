@@ -11,7 +11,7 @@ import {
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DescriptionDialog from './DescriptionDialog';
 import AssignRankDialog from './AssignRankDialog';
-import { RANKS } from '../utils/constants';
+import { getRankColorForDish } from '../utils/Utility';
 
 const DishCard = ({ dish }) => {
     const { image, dishName, description } = dish;
@@ -29,14 +29,11 @@ const DishCard = ({ dish }) => {
         setIsRankDialogOpen(!isRankDialogOpen);
     };
 
-    const getRankColor = () =>
-        RANKS.find((rank) => rank.id === dish.rankId).color;
-
     return (
         <>
             <Card
                 sx={{
-                    bgcolor: getRankColor(),
+                    bgcolor: getRankColorForDish(dish),
                 }}
             >
                 <CardHeader

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
+import WestIcon from '@mui/icons-material/West';
+import EastIcon from '@mui/icons-material/East';
 import { Link } from 'react-router-dom';
 
 const Header = ({ showLogin, showLeaderboard, showPrevious }) => {
@@ -49,6 +51,7 @@ const Header = ({ showLogin, showLeaderboard, showPrevious }) => {
                     <Link to={{ pathname: '/dishes/leaderboard' }}>
                         <Button
                             variant="contained"
+                            endIcon={<EastIcon />}
                             sx={{
                                 margin: '0 1rem 0 0',
                                 letterSpacing: '0.2rem',
@@ -63,6 +66,7 @@ const Header = ({ showLogin, showLeaderboard, showPrevious }) => {
                     <Link to={{ pathname: '/dishes' }}>
                         <Button
                             variant="contained"
+                            startIcon={<WestIcon />}
                             sx={{
                                 margin: '0 1rem 0 0',
                                 letterSpacing: '0.2rem',

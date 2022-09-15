@@ -1,3 +1,5 @@
+import { RANKS } from './constants';
+
 const getDishesWithChangedRank = (dishes, dish, selectedRankId) =>
     dishes.map((item) => {
         if (item.rankId === selectedRankId) return { ...item, rankId: 0 };
@@ -5,4 +7,10 @@ const getDishesWithChangedRank = (dishes, dish, selectedRankId) =>
         return item;
     });
 
-export { getDishesWithChangedRank };
+const getRankColorForDish = (dish) =>
+    RANKS.find((rank) => rank.id === dish.rankId).color;
+
+const getScoreByRankForDish = (dish) =>
+    RANKS.find((rank) => rank.id === dish.rankId).value;
+
+export { getDishesWithChangedRank, getRankColorForDish, getScoreByRankForDish };
