@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import { Routes, Route } from 'react-router-dom';
 import DishesPage from './components/DishesPage';
+import LeaderboardPage from './components/LeaderboardPage';
 
 function App() {
     return (
@@ -25,6 +26,11 @@ function App() {
                         <Route exact path="/login" element={<Login />} />
                         <Route exact path="/register" element={<Register />} />
                         <Route exact path="/dishes" element={<DishesPage />} />
+                        <Route
+                            exact
+                            path="/dishes/leaderboard"
+                            element={<LeaderboardPage />}
+                        />
                     </Routes>
                 </SnackbarProvider>
             </ThemeProvider>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Footer from './stateless/Footer';
-import Header from './stateless/Header';
+import Header from './Header';
 import {
     Box,
     Stack,
@@ -47,7 +47,7 @@ const DishesPage = () => {
 
     return (
         <Box>
-            <Header showLogin={true} />
+            <Header showLeaderboard={true} />
             <Box className="section">
                 <Box
                     sx={{
