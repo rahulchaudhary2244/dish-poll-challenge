@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Header = ({ showLogin }) => {
     return (
-        <Box className="header" sx={{ flexDirection: 'row', width: '100%' }}>
+        <Box className="header">
             <Typography
                 variant="h5"
                 noWrap
@@ -23,20 +23,43 @@ const Header = ({ showLogin }) => {
             >
                 Syook
             </Typography>
-            {showLogin && (
-                <Link to={{ pathname: '/login' }}>
-                    <Button
-                        variant="contained"
-                        sx={{
-                            margin: '0 1rem 0 0',
-                            letterSpacing: '0.2rem',
-                            fontWeight: 700,
-                        }}
-                    >
-                        Login
-                    </Button>{' '}
-                </Link>
-            )}
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    width: '50%',
+                    justifyContent: 'flex-end',
+                }}
+            >
+                {showLogin && (
+                    <Link to={{ pathname: '/login' }}>
+                        <Button
+                            variant="contained"
+                            sx={{
+                                margin: '0 1rem 0 0',
+                                letterSpacing: '0.2rem',
+                                fontWeight: 700,
+                            }}
+                        >
+                            Login
+                        </Button>
+                    </Link>
+                )}
+                {/* {true && (
+                    <Link to={{ pathname: '/leaderboard' }}>
+                        <Button
+                            variant="contained"
+                            sx={{
+                                margin: '0 1rem 0 0',
+                                letterSpacing: '0.2rem',
+                                fontWeight: 700,
+                            }}
+                        >
+                            Leaderboard
+                        </Button>
+                    </Link>
+                )} */}
+            </Box>
         </Box>
     );
 };
