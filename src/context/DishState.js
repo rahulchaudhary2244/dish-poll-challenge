@@ -5,6 +5,10 @@ import DishContext from './DishContext';
 const DishState = (props) => {
     const [dishes, setDishes] = useState([]);
 
+    /**
+     *
+     * @returns {Promise.Array<DishItem>} - returns array of DishItem
+     */
     const fetchDishes = async () => {
         try {
             const API_URL = `https://raw.githubusercontent.com/syook/react-dishpoll/main/db.json`;

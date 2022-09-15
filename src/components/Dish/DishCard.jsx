@@ -9,20 +9,20 @@ import {
     IconButton,
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import DescriptionDialog from './DescriptionDialog';
-import AssignRankDialog from './AssignRankDialog';
-import { getRankColorForDish } from '../utils/Utility';
+import DishDescriptionDialog from './DishDescriptionDialog';
+import DishAssignRankDialog from './DishAssignRankDialog';
+import { getRankColorForDish } from '../../utils/Utility';
 
 const DishCard = ({ dish }) => {
     const { image, dishName, description } = dish;
 
-    const [isDescriptionDialogOpen, setIsDescriptionDialogOpen] =
+    const [isDishDescriptionDialogOpen, setIsDishDescriptionDialogOpen] =
         useState(false);
 
     const [isRankDialogOpen, setIsRankDialogOpen] = useState(false);
 
     const handleDescriptionClick = () => {
-        setIsDescriptionDialogOpen(!isDescriptionDialogOpen);
+        setIsDishDescriptionDialogOpen(!isDishDescriptionDialogOpen);
     };
 
     const handleSettingsClick = () => {
@@ -66,13 +66,13 @@ const DishCard = ({ dish }) => {
                     </CardContent>
                 </CardActionArea>
             </Card>
-            <DescriptionDialog
-                open={isDescriptionDialogOpen}
+            <DishDescriptionDialog
+                open={isDishDescriptionDialogOpen}
                 handleClickClose={handleDescriptionClick}
                 dishName={dishName}
                 description={description}
             />
-            <AssignRankDialog
+            <DishAssignRankDialog
                 open={isRankDialogOpen}
                 handleClose={handleSettingsClick}
                 dish={dish}

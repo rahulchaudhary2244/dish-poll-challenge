@@ -5,7 +5,7 @@ import { SnackbarProvider } from 'notistack';
 import Login from './components/Login';
 import Register from './components/Register';
 import { Routes, Route } from 'react-router-dom';
-import DishesPage from './components/DishesPage';
+import DishesSelectionPage from './components/DishesSelectionPage';
 import LeaderboardPage from './components/LeaderboardPage';
 import DishState from './context/DishState';
 
@@ -34,7 +34,7 @@ function App() {
                             <Route
                                 exact
                                 path="/dishes"
-                                element={<DishesPage />}
+                                element={<DishesSelectionPage />}
                             />
                             <Route
                                 exact

@@ -8,7 +8,7 @@ import {
     DialogActions,
 } from '@mui/material';
 
-const DescriptionDialog = ({
+const DishDescriptionDialog = ({
     open,
     handleClickClose,
     description,
@@ -27,4 +27,4 @@ const DescriptionDialog = ({
     );
 };
 
-export default DescriptionDialog;
+export default DishDescriptionDialog;

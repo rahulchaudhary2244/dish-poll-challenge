@@ -12,11 +12,11 @@ import {
 } from '@mui/material';
 
 import { useSnackbar } from 'notistack';
-import { RANKS } from '../utils/constants';
-import { getDishesWithChangedRank } from '../utils/Utility';
-import dishContext from '../context/DishContext';
+import { RANKS } from '../../utils/constants';
+import { getDishesWithChangedRank } from '../../utils/Utility';
+import dishContext from '../../context/DishContext';
 
-const AssignRankDialog = ({ open, dish, handleClose }) => {
+const DishAssignRankDialog = ({ open, dish, handleClose }) => {
     const [dishes, setDishes] = useContext(dishContext);
     const { enqueueSnackbar } = useSnackbar();
 
@@ -71,4 +71,4 @@ const AssignRankDialog = ({ open, dish, handleClose }) => {
     );
 };
 
-export default AssignRankDialog;
+export default DishAssignRankDialog;

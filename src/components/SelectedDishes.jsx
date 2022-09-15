@@ -9,6 +9,12 @@ const SelectedDishes = () => {
     const [dishes, setDishes] = useContext(dishContext);
 
     const { enqueueSnackbar } = useSnackbar();
+
+    /**
+     * This function handles deletion of rankId from a DishItem by setting rankId to that DishItem to 0
+     * @param {Array<DishItem>} dishes
+     * @param {DishItem} dish
+     */
     const handleRankDelete = (dishes, dish) => {
         setDishes(getDishesWithChangedRank(dishes, dish, 0));
         enqueueSnackbar(`${dish.dishName} is assigned no rank`, {

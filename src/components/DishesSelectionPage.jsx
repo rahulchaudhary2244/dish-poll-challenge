@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import Footer from './stateless/Footer';
 import Header from './Header';
 import { Box, Grid } from '@mui/material';
-import DishCard from './DishCard';
+import DishCard from './Dish/DishCard';
 import dishContext from '../context/DishContext';
 import SelectedDishes from './SelectedDishes';
 
-const DishesPage = () => {
+const DishesSelectionPage = () => {
     const [dishes] = useContext(dishContext);
 
     return (
@@ -38,4 +38,4 @@ const DishesPage = () => {
     );
 };
 
-export default DishesPage;
+export default DishesSelectionPage;

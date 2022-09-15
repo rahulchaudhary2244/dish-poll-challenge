@@ -26,6 +26,10 @@ const Register = () => {
         password: '',
     });
 
+    /**
+     *
+     * @param {Object} e - accepts onChange event on text field
+     */
     const handleInputChange = (e) => {
         setUserRegisterDetails({
             ...userRegisterDetails,
@@ -34,6 +38,10 @@ const Register = () => {
         e.stopPropagation();
     };
 
+    /**
+     *
+     * @param {Object} e - accepts onClick event on button
+     */
     const handleRegisterUser = (e) => {
         e.stopPropagation();
     };
