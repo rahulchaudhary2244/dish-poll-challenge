@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Footer from './stateless/Footer';
+import Footer from './Footer';
 import Header from './Header';
 import {
     Box,

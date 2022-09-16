@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Header from './Header';
 import dishContext from '../context/DishContext';
 import { Box, Paper, Typography, Avatar, Stack } from '@mui/material';
-import Footer from './stateless/Footer';
+import Footer from './Footer';
 import { getRankColorForDish, getScoreByRankForDish } from '../utils/Utility';
 
 const customStyles = {
