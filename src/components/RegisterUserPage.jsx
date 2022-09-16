@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Footer from './stateless/Footer';
-import Header from './stateless/Header';
+import Footer from './Footer';
+import Header from './Header';
 import {
     Box,
     Paper,
@@ -10,45 +10,49 @@ import {
     Button,
     Typography,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
-import USER_DATA from '../data/USER_DATA';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import { registerUser } from '../utils/Utility';
 
 const PaperItem = styled(Paper)(({ theme }) => ({
     backgroundColor: '#f8f0f0d0',
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'center',
-    color: theme.palette.text.secondary, //#641db933
+    color: theme.palette.text.primary, //#641db933
 }));
 
-const Login = () => {
-    const [userLoginDetails, setUserLoginDetails] = useState({
+const RegisterUserPage = () => {
+    const [userRegisterDetails, setUserRegisterDetails] = useState({
         username: '',
         password: '',
     });
     const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
 
+    /**
+     *
+     * @param {Object} e - accepts onChange event on text field
+     */
     const handleInputChange = (e) => {
-        setUserLoginDetails({
-            ...userLoginDetails,
-            [e.target.name]: e.target.value,
+        setUserRegisterDetails({
+            ...userRegisterDetails,
+            [e.target.name]: e.target.value.trim(),
         });
         e.stopPropagation();
     };
 
-    const handleUserLogin = (e) => {
-        const user = USER_DATA.find(
-            (user) =>
-                user.username === userLoginDetails.username &&
-                user.password === userLoginDetails.password
-        );
-        if (!!user) {
-            navigate('/dishes', { state: { isAuthenticated: true, user } });
-            return;
-        }
-        console.log('user not found');
-        e.preventDefault();
+    /**
+     *
+     * @param {Object} e - accepts onClick event on button
+     */
+    const handleRegisterUser = (e) => {
+        const { message, variant } = registerUser(userRegisterDetails);
+        enqueueSnackbar(message, {
+            variant: variant,
+        });
+        if (variant === 'success') navigate('/login');
+        e.stopPropagation();
     };
 
     return (
@@ -71,18 +75,16 @@ const Login = () => {
                                 justifyContent="center"
                                 alignItems="center"
                                 spacing={3}
-                                component="form"
-                                onSubmit={handleUserLogin}
                             >
                                 <Typography variant="h5" component="div">
-                                    Login
+                                    Register
                                 </Typography>
                                 <TextField
                                     id="outlined-textarea"
                                     label="Username"
                                     placeholder="Enter your username"
                                     name="username"
-                                    value={userLoginDetails.username}
+                                    value={userRegisterDetails.username}
                                     onChange={handleInputChange}
                                     fullWidth
                                 />
@@ -91,24 +93,25 @@ const Login = () => {
                                     label="Password"
                                     placeholder="Enter your password"
                                     name="password"
-                                    value={userLoginDetails.password}
+                                    value={userRegisterDetails.password}
                                     onChange={handleInputChange}
                                     fullWidth
                                 />
                                 <Button
                                     variant="contained"
                                     fullWidth
-                                    type="submit"
+                                    onClick={handleRegisterUser}
                                 >
-                                    Login
+                                    Resgister Now
                                 </Button>
                                 <Typography variant="subtitle1" component="div">
-                                    Don't have account ?{' '}
-                                    <Link to={{ pathname: '/register' }}>
-                                        <Button variant="text">
-                                            Register now
-                                        </Button>
-                                    </Link>
+                                    Already have an account ?{' '}
+                                    <Button
+                                        variant="text"
+                                        onClick={() => navigate('/login')}
+                                    >
+                                        Login now
+                                    </Button>
                                 </Typography>
                             </Stack>
                         </PaperItem>
@@ -120,4 +123,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default RegisterUserPage;

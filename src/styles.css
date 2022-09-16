@@ -26,7 +26,7 @@ body {
 
 .section {
     width: 100%;
-    min-height: 80vh;
+    min-height: 82vh;
 }
 
 .footer {
@@ -55,4 +55,10 @@ body {
 .hide-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+}
+
+@media only screen and (max-width: 450px) {
+    .header {
+        background: linear-gradient(109.6deg, #000000de 30.2%, #f8f0f0 10.9%);
+    }
 }

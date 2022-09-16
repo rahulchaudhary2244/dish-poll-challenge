@@ -1,21 +1,31 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { useSnackbar } from 'notistack';
-import { RANKS } from '../utils/constants';
-import { getDishesWithChangedRank } from '../utils/Utility';
+import React, { useContext } from 'react';
+import {
+    DialogActions,
+    DialogContent,
+    Dialog,
+    Button,
+    DialogTitle,
+    InputLabel,
+    MenuItem,
+    FormControl,
+    Select,
+} from '@mui/material';
 
-const AssignRankDialog = ({ open, dish, dishes, setDishes, handleClose }) => {
+import { useSnackbar } from 'notistack';
+import { RANKS } from '../../utils/constants';
+import { getDishesWithChangedRank } from '../../utils/Utility';
+import dishContext from '../../context/DishContext';
+
+const DishAssignRankDialog = ({ open, dish, handleClose }) => {
+    const [dishes, setDishes] = useContext(dishContext);
     const { enqueueSnackbar } = useSnackbar();
 
+    /**
+     *
+     * @param {Object} e - accepts onChange event object
+     */
     const handleRankChange = (e) => {
+        e.stopPropagation();
         const selectedRankId = e.target.value;
         setDishes(getDishesWithChangedRank(dishes, dish, selectedRankId));
         const message =
@@ -66,4 +76,4 @@ const AssignRankDialog = ({ open, dish, dishes, setDishes, handleClose }) => {
     );
 };
 
-export default AssignRankDialog;
+export default DishAssignRankDialog;

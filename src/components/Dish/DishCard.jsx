@@ -9,32 +9,39 @@ import {
     IconButton,
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import DescriptionDialog from './DescriptionDialog';
-import AssignRankDialog from './AssignRankDialog';
-import { RANKS } from '../utils/constants';
+import DishDescriptionDialog from './DishDescriptionDialog';
+import DishAssignRankDialog from './DishAssignRankDialog';
+import { getRankColorForDish } from '../../utils/Utility';
 
-const DishCard = ({ dish, dishes, setDishes }) => {
+const DishCard = ({ dish }) => {
     const { image, dishName, description } = dish;
-    const [isDescriptionDialogOpen, setIsDescriptionDialogOpen] =
+
+    const [isDishDescriptionDialogOpen, setIsDishDescriptionDialogOpen] =
         useState(false);
+
     const [isRankDialogOpen, setIsRankDialogOpen] = useState(false);
 
+    /**
+     *
+     * @param {Object} e - accepts onClick event object
+     */
     const handleDescriptionClick = () => {
-        setIsDescriptionDialogOpen(!isDescriptionDialogOpen);
+        setIsDishDescriptionDialogOpen(!isDishDescriptionDialogOpen);
     };
 
+    /**
+     *
+     * @param {Object} e - accepts onClick event object
+     */
     const handleSettingsClick = () => {
         setIsRankDialogOpen(!isRankDialogOpen);
     };
-
-    const getRankColor = () =>
-        RANKS.find((rank) => rank.id === dish.rankId).color;
 
     return (
         <>
             <Card
                 sx={{
-                    bgcolor: getRankColor(),
+                    bgcolor: getRankColorForDish(dish),
                 }}
             >
                 <CardHeader
@@ -67,18 +74,16 @@ const DishCard = ({ dish, dishes, setDishes }) => {
                     </CardContent>
                 </CardActionArea>
             </Card>
-            <DescriptionDialog
-                open={isDescriptionDialogOpen}
+            <DishDescriptionDialog
+                open={isDishDescriptionDialogOpen}
                 handleClickClose={handleDescriptionClick}
                 dishName={dishName}
                 description={description}
             />
-            <AssignRankDialog
+            <DishAssignRankDialog
                 open={isRankDialogOpen}
                 handleClose={handleSettingsClick}
                 dish={dish}
-                dishes={dishes}
-                setDishes={setDishes}
             />
         </>
     );
