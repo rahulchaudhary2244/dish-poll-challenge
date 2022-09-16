@@ -11,8 +11,9 @@ import {
     Typography,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import USER_DATA from '../data/USER_DATA';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import { authenticateUser } from '../utils/Utility';
 
 const PaperItem = styled(Paper)(({ theme }) => ({
     backgroundColor: '#f8f0f0d0',
@@ -28,27 +29,30 @@ const Login = () => {
         password: '',
     });
     const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleInputChange = (e) => {
         setUserLoginDetails({
             ...userLoginDetails,
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value.trim(),
         });
         e.stopPropagation();
     };
 
     const handleUserLogin = (e) => {
-        const user = USER_DATA.find(
-            (user) =>
-                user.username === userLoginDetails.username &&
-                user.password === userLoginDetails.password
-        );
-        if (!!user) {
-            navigate('/dishes', { state: { isAuthenticated: true, user } });
-            return;
-        }
-        console.log('user not found');
         e.preventDefault();
+
+        if (authenticateUser(userLoginDetails)) {
+            localStorage.setItem('isLoggedIn', 'someToken');
+            enqueueSnackbar(`Welcome ${userLoginDetails.username}`, {
+                variant: 'success',
+            });
+            navigate('/dishes');
+        } else {
+            enqueueSnackbar(`No user found, Register to Login`, {
+                variant: 'warning',
+            });
+        }
     };
 
     return (

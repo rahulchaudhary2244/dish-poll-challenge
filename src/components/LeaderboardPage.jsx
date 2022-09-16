@@ -68,7 +68,7 @@ const LeaderboardPage = () => {
     return (
         <>
             <Box>
-                <Header showPrevious={true} />
+                <Header showPrevious showLogout />
                 <Box className="section">
                     <Stack
                         direction="column"
@@ -92,8 +92,8 @@ const LeaderboardPage = () => {
                             >
                                 {!!dishes.filter((dish) => dish.rankId > 0)
                                     .length
-                                    ? 'Results'
-                                    : 'No Dish Selected!'}
+                                    ? '🎉  Result  🎉'
+                                    : '🍜 No Dish Selected! 🍜'}
                             </Typography>
                         </Paper>
 

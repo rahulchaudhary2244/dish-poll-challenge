@@ -10,7 +10,9 @@ import {
     Button,
     Typography,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import { registerUser } from '../utils/Utility';
 
 const PaperItem = styled(Paper)(({ theme }) => ({
     backgroundColor: '#f8f0f0d0',
@@ -25,6 +27,8 @@ const Register = () => {
         username: '',
         password: '',
     });
+    const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
 
     /**
      *
@@ -33,7 +37,7 @@ const Register = () => {
     const handleInputChange = (e) => {
         setUserRegisterDetails({
             ...userRegisterDetails,
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value.trim(),
         });
         e.stopPropagation();
     };
@@ -43,6 +47,11 @@ const Register = () => {
      * @param {Object} e - accepts onClick event on button
      */
     const handleRegisterUser = (e) => {
+        const { message, variant } = registerUser(userRegisterDetails);
+        enqueueSnackbar(message, {
+            variant: variant,
+        });
+        if (variant === 'success') navigate('/login');
         e.stopPropagation();
     };
 

@@ -2,9 +2,18 @@ import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import WestIcon from '@mui/icons-material/West';
 import EastIcon from '@mui/icons-material/East';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import LogoutIcon from '@mui/icons-material/Logout';
+import SportsScoreRoundedIcon from '@mui/icons-material/SportsScoreRounded';
 
-const Header = ({ showLogin, showLeaderboard, showPrevious }) => {
+const Header = ({ showLeaderboard, showPrevious, showLogout }) => {
+    const navigate = useNavigate();
+
+    const handleLogout = (e) => {
+        localStorage.setItem('isLoggedIn', '');
+        navigate('/login');
+    };
+
     return (
         <Box className="header">
             <Typography
@@ -33,49 +42,47 @@ const Header = ({ showLogin, showLeaderboard, showPrevious }) => {
                     justifyContent: 'flex-end',
                 }}
             >
-                {showLogin && (
-                    <Link to={{ pathname: '/login' }}>
-                        <Button
-                            variant="contained"
-                            sx={{
-                                margin: '0 1rem 0 0',
-                                letterSpacing: '0.2rem',
-                                fontWeight: 700,
-                            }}
-                        >
-                            Login
-                        </Button>
-                    </Link>
-                )}
                 {showLeaderboard && (
-                    <Link to={{ pathname: '/dishes/leaderboard' }}>
-                        <Button
-                            variant="contained"
-                            endIcon={<EastIcon />}
-                            sx={{
-                                margin: '0 1rem 0 0',
-                                letterSpacing: '0.2rem',
-                                fontWeight: 700,
-                            }}
-                        >
-                            Leaderboard
-                        </Button>
-                    </Link>
+                    <Button
+                        variant="contained"
+                        endIcon={<SportsScoreRoundedIcon />}
+                        sx={{
+                            margin: '0 1rem 0 0',
+                            letterSpacing: '0.2rem',
+                            fontWeight: 700,
+                        }}
+                        onClick={() => navigate('/dishes/leaderboard')}
+                    >
+                        View Score
+                    </Button>
                 )}
                 {showPrevious && (
-                    <Link to={{ pathname: '/dishes' }}>
-                        <Button
-                            variant="contained"
-                            startIcon={<WestIcon />}
-                            sx={{
-                                margin: '0 1rem 0 0',
-                                letterSpacing: '0.2rem',
-                                fontWeight: 700,
-                            }}
-                        >
-                            Back
-                        </Button>
-                    </Link>
+                    <Button
+                        variant="contained"
+                        startIcon={<WestIcon />}
+                        sx={{
+                            margin: '0 1rem 0 0',
+                            letterSpacing: '0.2rem',
+                            fontWeight: 700,
+                        }}
+                        onClick={() => navigate('/dishes')}
+                    >
+                        Back
+                    </Button>
+                )}
+                {showLogout && (
+                    <Button
+                        variant="outlined"
+                        endIcon={<LogoutIcon />}
+                        sx={{
+                            margin: '0 1rem 0 0',
+                            letterSpacing: '0.2rem',
+                            fontWeight: 700,
+                        }}
+                        onClick={handleLogout}
+                    >
+                        Logout
+                    </Button>
                 )}
             </Box>
         </Box>

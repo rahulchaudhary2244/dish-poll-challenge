@@ -11,7 +11,7 @@ const DishesSelectionPage = () => {
 
     return (
         <Box>
-            <Header showLeaderboard={true} />
+            <Header showLeaderboard showLogout />
             <Box className="section">
                 <Box
                     sx={{

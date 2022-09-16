@@ -4,10 +4,11 @@ import theme from './utils/theme';
 import { SnackbarProvider } from 'notistack';
 import Login from './components/Login';
 import Register from './components/Register';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import DishesSelectionPage from './components/DishesSelectionPage';
 import LeaderboardPage from './components/LeaderboardPage';
 import DishState from './context/DishState';
+import Protected from './components/Protected';
 
 function App() {
     return (
@@ -34,12 +35,22 @@ function App() {
                             <Route
                                 exact
                                 path="/dishes"
-                                element={<DishesSelectionPage />}
+                                element={
+                                    <Protected
+                                        Component={DishesSelectionPage}
+                                    />
+                                }
                             />
                             <Route
                                 exact
                                 path="/dishes/leaderboard"
-                                element={<LeaderboardPage />}
+                                element={
+                                    <Protected Component={LeaderboardPage} />
+                                }
+                            />
+                            <Route
+                                path="/*"
+                                element={<Navigate to="/login" replace />}
                             />
                         </Routes>
                     </DishState>

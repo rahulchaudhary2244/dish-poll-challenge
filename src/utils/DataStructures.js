@@ -17,3 +17,10 @@
  * @property {string} label
  * @property {string} color
  */
+
+/**
+ * @typedef {Object} User - Data related to a user
+ *
+ * @property {string} username
+ * @property {string} password
+ */

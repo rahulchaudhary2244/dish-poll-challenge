@@ -1,3 +1,4 @@
+import USER_DATA from '../data/USER_DATA';
 import { RANKS } from './constants';
 
 /**
@@ -30,4 +31,58 @@ const getRankColorForDish = (dish) =>
 const getScoreByRankForDish = (dish) =>
     RANKS.find((rank) => rank.id === dish.rankId).value;
 
-export { getDishesWithChangedRank, getRankColorForDish, getScoreByRankForDish };
+/**
+ * This fnction return true if user is found in given USER_DATA file else it checks if user data is present in localstorage and based on that it returns true or false
+ * @param {User} user
+ * @returns {boolean} - return true or false
+ */
+const authenticateUser = (user) => {
+    let userData = USER_DATA.find(
+        (item) =>
+            user.username === item.username && user.password === item.password
+    );
+    if (!!userData) return true;
+    const REGISTERED_USER_DATA =
+        JSON.parse(localStorage.getItem('REGISTERED_USER_DATA')) || [];
+    userData = REGISTERED_USER_DATA.find(
+        (item) =>
+            user.username === item.username && user.password === item.password
+    );
+    return !!userData;
+};
+
+const registerUser = (user) => {
+    console.log(user);
+    const result = {
+        variant: 'warning',
+        message: `Username or Password can't be empty`,
+    };
+
+    if (!!!user.username.trim() || !!!user.password.trim()) return result;
+
+    if (authenticateUser(user)) {
+        result.message = `Username already taken`;
+        return result;
+    }
+
+    const REGISTERED_USER_DATA =
+        JSON.parse(localStorage.getItem('REGISTERED_USER_DATA')) || [];
+
+    REGISTERED_USER_DATA.push(user);
+
+    localStorage.setItem(
+        'REGISTERED_USER_DATA',
+        JSON.stringify(REGISTERED_USER_DATA)
+    );
+
+    result.message = `User Registered!`;
+    return result;
+};
+
+export {
+    getDishesWithChangedRank,
+    getRankColorForDish,
+    getScoreByRankForDish,
+    authenticateUser,
+    registerUser,
+};
