@@ -20,7 +20,7 @@ const PaperItem = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'center',
-    color: theme.palette.text.secondary, //#641db933
+    color: theme.palette.text.primary, //#641db933
 }));
 
 const Login = () => {
@@ -108,11 +108,12 @@ const Login = () => {
                                 </Button>
                                 <Typography variant="subtitle1" component="div">
                                     Don't have account ?{' '}
-                                    <Link to={{ pathname: '/register' }}>
-                                        <Button variant="text">
-                                            Register now
-                                        </Button>
-                                    </Link>
+                                    <Button
+                                        variant="text"
+                                        onClick={() => navigate('/register')}
+                                    >
+                                        Register now
+                                    </Button>
                                 </Typography>
                             </Stack>
                         </PaperItem>

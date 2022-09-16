@@ -10,7 +10,7 @@ import {
     Button,
     Typography,
 } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { registerUser } from '../utils/Utility';
 
@@ -19,7 +19,7 @@ const PaperItem = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'center',
-    color: theme.palette.text.secondary, //#641db933
+    color: theme.palette.text.primary, //#641db933
 }));
 
 const Register = () => {
@@ -106,11 +106,12 @@ const Register = () => {
                                 </Button>
                                 <Typography variant="subtitle1" component="div">
                                     Already have an account ?{' '}
-                                    <Link to={{ pathname: '/login' }}>
-                                        <Button variant="text">
-                                            Login now
-                                        </Button>
-                                    </Link>
+                                    <Button
+                                        variant="text"
+                                        onClick={() => navigate('/login')}
+                                    >
+                                        Login now
+                                    </Button>
                                 </Typography>
                             </Stack>
                         </PaperItem>
