@@ -107,6 +107,7 @@ const registerUser = (user) => {
     );
 
     result.message = `User Registered!`;
+    result.variant = 'success';
     return result;
 };
 
@@ -123,7 +124,7 @@ const loginUser = (user) => {
         return result;
     }
     result.variant = 'warning';
-    result.message = `No user found, Register to Login`;
+    result.message = `Username or Password is incorrect`;
 
     return result;
 };
