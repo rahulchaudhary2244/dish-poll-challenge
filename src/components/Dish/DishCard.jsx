@@ -21,18 +21,10 @@ const DishCard = ({ dish }) => {
 
     const [isRankDialogOpen, setIsRankDialogOpen] = useState(false);
 
-    /**
-     *
-     * @param {Object} e - accepts onClick event object
-     */
     const handleDescriptionClick = () => {
         setIsDishDescriptionDialogOpen(!isDishDescriptionDialogOpen);
     };
 
-    /**
-     *
-     * @param {Object} e - accepts onClick event object
-     */
     const handleSettingsClick = () => {
         setIsRankDialogOpen(!isRankDialogOpen);
     };
@@ -61,6 +53,7 @@ const DishCard = ({ dish }) => {
                         height="140"
                         image={image}
                         alt="green iguana"
+                        onClick={handleSettingsClick}
                     />
                     <CardContent>
                         <Typography
