@@ -64,7 +64,7 @@ const getRankedDish = (dish) => (
 
 const LeaderboardPage = () => {
     const [dishes] = useContext(dishContext);
-    console.log(dishes.filter((dish) => dish.rankId > 0));
+
     return (
         <>
             <Box>

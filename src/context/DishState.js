@@ -18,7 +18,6 @@ const DishState = (props) => {
             });
             setDishes(buildDishes);
         } catch (err) {
-            console.log('Dishes data not fetched');
             return [];
         }
     };
