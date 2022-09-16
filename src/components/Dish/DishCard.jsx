@@ -55,7 +55,7 @@ const DishCard = ({ dish }) => {
                     }
                     title={dishName}
                 />
-                <CardActionArea>
+                <CardActionArea onClick={handleSettingsClick}>
                     <CardMedia
                         component="img"
                         height="140"
