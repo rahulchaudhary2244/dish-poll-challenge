@@ -93,6 +93,7 @@ const RegisterUserPage = () => {
                                     label="Password"
                                     placeholder="Enter your password"
                                     name="password"
+                                    type="password"
                                     value={userRegisterDetails.password}
                                     onChange={handleInputChange}
                                     fullWidth

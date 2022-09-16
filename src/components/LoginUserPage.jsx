@@ -98,6 +98,7 @@ const LoginUserPage = () => {
                                     label="Password"
                                     placeholder="Enter your password"
                                     name="password"
+                                    type="password"
                                     value={userLoginDetails.password}
                                     onChange={handleInputChange}
                                     fullWidth
