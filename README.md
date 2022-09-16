@@ -1,28 +1,45 @@
-## Available Scripts
+# React Dish Poll
 
-In the project directory, you can run:
+This coding challenge is provided by [Syook](https://www.syook.com/) and code is reviewed by [geektrust.in](https://www.geektrust.com/)
 
-### `npm install`
+[Problem statement](https://github.com/syook/react-dishpoll) by [Syook](https://www.syook.com/)
 
-This will install all dependencies.
+## Deployment
 
-### `npm start`
+View deployed app here [dish-poll-by-rahul](https://dish-poll-by-rahul.netlify.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Demo
 
-The page will reload when you make changes.
-You may also see any lint errors in the console.
+![dish-poll-by-rahul.gif](https://github.com/rahulchaudhary2244/media-repository/blob/main/dish-poll-gif.gif)
 
-### `npm test`
+## Run Locally
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone the project
 
-### `npm run build`
+```bash
+  git clone https://github.com/rahulchaudhary2244/dish-poll-challenge.git
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Go to the project directory
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+  cd dish-poll-challenge
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server | NOTE: Server will start at default port 3000, [http://localhost:3000](http://localhost:3000)
+
+```bash
+  npm start
+```
+
+Test
+
+```bash
+  npm test
+```
