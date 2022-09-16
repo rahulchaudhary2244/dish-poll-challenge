@@ -1,4 +1,4 @@
-# Finding Falcone
+# React Dish Poll
 
 This coding challenge is provided by [Syook](https://www.syook.com/) and code is reviewed by [geektrust.in](https://www.geektrust.com/)
 
