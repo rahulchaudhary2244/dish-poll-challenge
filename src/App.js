@@ -2,8 +2,8 @@ import './styles.css';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './utils/theme';
 import { SnackbarProvider } from 'notistack';
-import Login from './components/Login';
-import Register from './components/Register';
+import LoginUserPage from './components/LoginUserPage';
+import RegisterUserPage from './components/RegisterUserPage';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import DishesSelectionPage from './components/DishesSelectionPage';
 import LeaderboardPage from './components/LeaderboardPage';
@@ -19,18 +19,22 @@ function App() {
                     preventDuplicate
                     maxSnack={3}
                     anchorOrigin={{
-                        vertical: 'top',
+                        vertical: 'bottom',
                         horizontal: 'center',
                     }}
-                    autoHideDuration={3000}
+                    autoHideDuration={2000}
                 >
                     <DishState>
                         <Routes>
-                            <Route exact path="/login" element={<Login />} />
+                            <Route
+                                exact
+                                path="/login"
+                                element={<LoginUserPage />}
+                            />
                             <Route
                                 exact
                                 path="/register"
-                                element={<Register />}
+                                element={<RegisterUserPage />}
                             />
                             <Route
                                 exact

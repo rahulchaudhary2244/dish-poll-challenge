@@ -8,6 +8,10 @@ import SportsScoreRoundedIcon from '@mui/icons-material/SportsScoreRounded';
 const Header = ({ showLeaderboard, showPrevious, showLogout }) => {
     const navigate = useNavigate();
 
+    /**
+     * This function removes login token of user from localStorage
+     * @param {Object} e - accepts onClick event object
+     */
     const handleLogout = (e) => {
         localStorage.setItem('isLoggedIn', '');
         navigate('/login');

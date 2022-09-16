@@ -20,7 +20,12 @@ const DishAssignRankDialog = ({ open, dish, handleClose }) => {
     const [dishes, setDishes] = useContext(dishContext);
     const { enqueueSnackbar } = useSnackbar();
 
+    /**
+     *
+     * @param {Object} e - accepts onChange event object
+     */
     const handleRankChange = (e) => {
+        e.stopPropagation();
         const selectedRankId = e.target.value;
         setDishes(getDishesWithChangedRank(dishes, dish, selectedRankId));
         const message =

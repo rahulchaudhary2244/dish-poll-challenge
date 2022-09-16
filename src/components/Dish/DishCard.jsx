@@ -21,10 +21,18 @@ const DishCard = ({ dish }) => {
 
     const [isRankDialogOpen, setIsRankDialogOpen] = useState(false);
 
+    /**
+     *
+     * @param {Object} e - accepts onClick event object
+     */
     const handleDescriptionClick = () => {
         setIsDishDescriptionDialogOpen(!isDishDescriptionDialogOpen);
     };
 
+    /**
+     *
+     * @param {Object} e - accepts onClick event object
+     */
     const handleSettingsClick = () => {
         setIsRankDialogOpen(!isRankDialogOpen);
     };

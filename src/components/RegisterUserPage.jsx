@@ -22,7 +22,7 @@ const PaperItem = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.primary, //#641db933
 }));
 
-const Register = () => {
+const RegisterUserPage = () => {
     const [userRegisterDetails, setUserRegisterDetails] = useState({
         username: '',
         password: '',
@@ -123,4 +123,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default RegisterUserPage;

@@ -6,9 +6,6 @@ const Protected = ({ Component }) => {
 
     useEffect(() => {
         const isLoggedId = localStorage.getItem('isLoggedIn');
-        //    if (isLoggedId) {
-        //        navigate('/dishes');
-        //    }
         if (!!!isLoggedId) {
             navigate('/login');
         }

@@ -1,6 +1,33 @@
 import USER_DATA from '../data/USER_DATA';
 import { RANKS } from './constants';
 
+// Definition of Data Structures used in this project
+/**
+ * @typedef {Object} DishItem - Data related to a dish
+ *
+ * @property {number} id
+ * @property {string} dishName
+ * @property {string} description
+ * @property {string} image
+ * @property {number} rankId
+ */
+
+/**
+ * @typedef {Object} RankItem - Data related to a rank
+ *
+ * @property {number} id
+ * @property {number} value
+ * @property {string} label
+ * @property {string} color
+ */
+
+/**
+ * @typedef {Object} User - Data related to a user
+ *
+ * @property {string} username
+ * @property {string} password
+ */
+
 /**
  * This function iterates over DishItem array and sets rankId of dish to default value 0 if selectedRankId is already selected in a dish. After that it updates selectedRankId to passed DishItem
  * @param {Array<DishItem>} dishes
@@ -51,8 +78,12 @@ const authenticateUser = (user) => {
     return !!userData;
 };
 
+/**
+ * This function persist user data to local storage as there is no DB connected
+ * @param {User} user
+ * @returns {Object} - returns {message: <string> , variant: <string>}
+ */
 const registerUser = (user) => {
-    console.log(user);
     const result = {
         variant: 'warning',
         message: `Username or Password can't be empty`,
@@ -79,10 +110,29 @@ const registerUser = (user) => {
     return result;
 };
 
+/**
+ * This function persists some token to localStorage after successfull login
+ * @param {User} user
+ * @returns {Object} - returns {message: <string> , variant: <string>}
+ */
+const loginUser = (user) => {
+    const result = { message: `Welcome ${user.username}`, variant: 'success' };
+
+    if (authenticateUser(user)) {
+        localStorage.setItem('isLoggedIn', 'someToken');
+        return result;
+    }
+    result.variant = 'warning';
+    result.message = `No user found, Register to Login`;
+
+    return result;
+};
+
 export {
     getDishesWithChangedRank,
     getRankColorForDish,
     getScoreByRankForDish,
     authenticateUser,
     registerUser,
+    loginUser,
 };

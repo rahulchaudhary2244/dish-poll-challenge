@@ -10,10 +10,9 @@ import {
     Button,
     Typography,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { authenticateUser } from '../utils/Utility';
+import { loginUser } from '../utils/Utility';
 
 const PaperItem = styled(Paper)(({ theme }) => ({
     backgroundColor: '#f8f0f0d0',
@@ -23,7 +22,7 @@ const PaperItem = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.primary, //#641db933
 }));
 
-const Login = () => {
+const LoginUserPage = () => {
     const [userLoginDetails, setUserLoginDetails] = useState({
         username: '',
         password: '',
@@ -31,6 +30,10 @@ const Login = () => {
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
 
+    /**
+     *
+     * @param {Object} e - accepts onChange event object
+     */
     const handleInputChange = (e) => {
         setUserLoginDetails({
             ...userLoginDetails,
@@ -39,20 +42,20 @@ const Login = () => {
         e.stopPropagation();
     };
 
+    /**
+     * This function route to /dishes if user is authenticated otherwise shows a warning message
+     * @param {Object} e - accepts onClick event object
+     */
     const handleUserLogin = (e) => {
         e.preventDefault();
 
-        if (authenticateUser(userLoginDetails)) {
-            localStorage.setItem('isLoggedIn', 'someToken');
-            enqueueSnackbar(`Welcome ${userLoginDetails.username}`, {
-                variant: 'success',
-            });
-            navigate('/dishes');
-        } else {
-            enqueueSnackbar(`No user found, Register to Login`, {
-                variant: 'warning',
-            });
-        }
+        const { variant, message } = loginUser(userLoginDetails);
+
+        enqueueSnackbar(message, {
+            variant: variant,
+        });
+
+        if (variant === 'success') navigate('/dishes');
     };
 
     return (
@@ -125,4 +128,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginUserPage;
