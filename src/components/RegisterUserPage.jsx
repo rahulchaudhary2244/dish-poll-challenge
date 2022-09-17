@@ -80,7 +80,7 @@ const RegisterUserPage = () => {
                                     Register
                                 </Typography>
                                 <TextField
-                                    id="outlined-textarea"
+                                    id="username-input"
                                     label="Username"
                                     placeholder="Enter your username"
                                     name="username"
@@ -89,7 +89,7 @@ const RegisterUserPage = () => {
                                     fullWidth
                                 />
                                 <TextField
-                                    id="outlined-textarea"
+                                    id="password-input"
                                     label="Password"
                                     placeholder="Enter your password"
                                     name="password"
