@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DishState from '../context/DishState';
 
 const Protected = ({ Component }) => {
     const navigate = useNavigate();
@@ -12,9 +13,9 @@ const Protected = ({ Component }) => {
     });
 
     return (
-        <>
+        <DishState>
             <Component />
-        </>
+        </DishState>
     );
 };
 

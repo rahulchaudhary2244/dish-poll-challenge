@@ -7,7 +7,6 @@ import RegisterUserPage from './components/RegisterUserPage';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import DishesSelectionPage from './components/DishesSelectionPage';
 import LeaderboardPage from './components/LeaderboardPage';
-import DishState from './context/DishState';
 import Protected from './components/Protected';
 
 function App() {
@@ -24,40 +23,34 @@ function App() {
                     }}
                     autoHideDuration={2000}
                 >
-                    <DishState>
-                        <Routes>
-                            <Route
-                                exact
-                                path="/login"
-                                element={<LoginUserPage />}
-                            />
-                            <Route
-                                exact
-                                path="/register"
-                                element={<RegisterUserPage />}
-                            />
-                            <Route
-                                exact
-                                path="/dishes"
-                                element={
-                                    <Protected
-                                        Component={DishesSelectionPage}
-                                    />
-                                }
-                            />
-                            <Route
-                                exact
-                                path="/dishes/leaderboard"
-                                element={
-                                    <Protected Component={LeaderboardPage} />
-                                }
-                            />
-                            <Route
-                                path="/*"
-                                element={<Navigate to="/login" replace />}
-                            />
-                        </Routes>
-                    </DishState>
+                    <Routes>
+                        <Route
+                            exact
+                            path="/login"
+                            element={<LoginUserPage />}
+                        />
+                        <Route
+                            exact
+                            path="/register"
+                            element={<RegisterUserPage />}
+                        />
+                        <Route
+                            exact
+                            path="/dishes"
+                            element={
+                                <Protected Component={DishesSelectionPage} />
+                            }
+                        />
+                        <Route
+                            exact
+                            path="/dishes/leaderboard"
+                            element={<Protected Component={LeaderboardPage} />}
+                        />
+                        <Route
+                            path="/*"
+                            element={<Navigate to="/login" replace />}
+                        />
+                    </Routes>
                 </SnackbarProvider>
             </ThemeProvider>
         </div>
